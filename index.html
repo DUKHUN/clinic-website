@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>박경하심내과</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --main-color: #1e90ff;
+      --sub-color: #f5faff;
+      --text-color: #222;
+      --accent-color: #4a76b8;
+      --section-bg: #ffffff;
+      --shadow: 0 4px 12px rgba(0,0,0,0.06);
+      --form-accent: #00b894;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Gowun Batang', 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--sub-color);
+      color: var(--text-color);
+    }
+    header {
+      background: linear-gradient(90deg, #5e9bd3, #1e90ff);
+      color: white;
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    nav a:hover { opacity: 0.8; }
+    .container {
+      padding: 3rem 1.5rem;
+      max-width: 1024px;
+      margin: auto;
+    }
+    section {
+      background: var(--section-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    section.active { display: block; }
+    .home {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: linear-gradient(to bottom, #d7ebf9, #ffffff);
+    }
+    .home img {
+      max-width: 220px;
+      margin-bottom: 1.5rem;
+    }
+    .home h1 {
+      display: none;
+    }
+    .home p {
+      font-size: 1.3rem;
+      color: #444;
+    }
+    h2 {
+      color: var(--accent-color);
+      font-size: 1.9rem;
+      border-left: 5px solid var(--main-color);
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+      line-height: 1.8;
+    }
+    .reserve-btn {
+      display: inline-block;
+      background-color: var(--main-color);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      text-align: center;
+      margin-top: 1rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.2s ease;
+    }
+    .reserve-btn:hover { background-color: #006edc; }
+    footer {
+      background-color: #1E90FF;
+      color: white;
+      text-align: center;
+      padding: 1.2rem;
+      font-size: 0.95rem;
+    }
+    .doctor-photo {
+      max-width: 180px;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+    }
+    .doctor-profile {
+      background-color: #f0f5fb;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+    iframe { border-radius: 12px; }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    input, textarea, select {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--form-accent);
+    }
+    button {
+      background-color: var(--form-accent);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background-color: #00997d;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) {
+      nav { flex-direction: column; gap: 0.5rem; }
+      nav a { font-size: 1.1rem; }
+      .container { padding: 1.5rem; }
+      .home img { max-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>박경하심내과</h1>
+  <nav>
+    <a onclick="showSection('intro')">병원 소개</a>
+    <a onclick="showSection('services')">진료 과목</a>
+    <a onclick="showSection('doctor')">의료진 소개</a>
+    <a onclick="showSection('location')">오시는 길</a>
+    <a onclick="showSection('contact')">문의</a>
+    <a onclick="showSection('reservation')">예약하기</a>
+  </nav>
+</header>
+
+<div class="home" id="home">
+  <img src="logo.png" alt="박경하심내과 로고">
+  <h1>박경하심내과</h1>
+  <p>정직하고 따뜻한 진료로, 건강한 내일을 만들어갑니다.</p>
+</div>
+
+<div class="container">
+  <section id="intro">
+    <h2>병원 소개</h2>
+    <p>박경하심내과는 환자 중심의 진료와 정밀한 내과 치료를 통해 지역사회 건강을 책임지고 있습니다.</p>
+  </section>
+  <section id="services">
+    <h2>진료 과목</h2>
+    <ul>
+      <li>순환기 내과</li>
+      <li>일반 내과</li>
+      <li>건강 검진</li>
+    </ul>
+  </section>
+  <section id="doctor">
+    <h2>의료진 소개</h2>
+    <img src="https://tse4.mm.bing.net/th?id=OIP.qecHmLyDZTGGkDy76ydalwHaJm&pid=Api" class="doctor-photo" alt="박경하 교수">
+    <p><strong>박경하 원장</strong> - 내과 전문의, 순환기 전문의</p>
+    <div class="doctor-profile">
+      <p><strong>학력 및 경력</strong></p>
+      <ul>
+        <li>서울대학교 의과대학 졸업</li>
+        <li>서울대학교병원 인턴, 레지던트 수료</li>
+        <li>서울대학교병원 순환기내과 전임의</li>
+        <li>전 한림대학교성심병원 심장내과 교수</li>
+        <li>대한순환기학회 정회원</li>
+        <li>대한고혈압학회 평생회원</li>
+      </ul>
+      <p>풍부한 진료 경험과 따뜻한 진심으로 환자의 건강을 책임지겠습니다.</p>
+    </div>
+  </section>
+  <section id="location">
+    <h2>오시는 길</h2>
+    <p>경기도 안양시 동안구 시민대로 187, AFC타워 3층</p>
+    <img src="map-example.png" alt="약도" style="max-width: 100%; border-radius: 12px;">
+  </section>
+  <section id="contact">
+    <h2>문의하기</h2>
+    <p>전화: 02-123-4567<br>이메일: example@clinic.com</p>
+  </section>
+  <section id="reservation">
+    <h2>예약하기</h2>
+    <p>진료 예약은 아래 양식을 통해 신청하거나 전화로 가능합니다.</p>
+    <form>
+      <input type="text" placeholder="이름" required>
+      <input type="tel" placeholder="전화번호" required>
+      <input type="date" required>
+      <select required>
+        <option value="">진료 과목 선택</option>
+        <option value="순환기 내과">순환기 내과</option>
+        <option value="일반 내과">일반 내과</option>
+        <option value="건강 검진">건강 검진</option>
+      </select>
+      <textarea rows="4" placeholder="증상 또는 요청사항"></textarea>
+      <button type="submit">예약 신청</button>
+    </form>
+    <a class="reserve-btn" href="tel:021234567">📞 전화로 예약하기</a>
+  </section>
+  <section id="timetable">
+    <h2>진료 시간 안내</h2>
+    <p>※ 현재 개원을 준비 중입니다. 추후 진료 시간이 업데이트될 예정입니다.</p>
+    <ul>
+      <li><strong>평일:</strong> 준비 중</li>
+      <li><strong>토요일:</strong> 준비 중</li>
+      <li><strong>점심시간:</strong> 준비 중</li>
+      <li><strong>일요일 및 공휴일:</strong> 휴무</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>&copy; 2025 박경하심내과. All rights reserved.</p>
+</footer>
+
+<script>
+  function showSection(id) {
+    document.getElementById('home').style.display = 'none';
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  // 홈 화면을 기본으로 보이게 하기 위해 intro 숨기고 home 유지
+  window.onload = () => {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById('home').style.display = 'block';
+  };
+</script>
+</body>
+</html>
